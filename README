@@ -1,0 +1,4 @@
+oauth1
+======
+
+Package oauth1 implements an OAuth 1.0a client per RFC 5849.
