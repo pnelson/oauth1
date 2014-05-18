@@ -10,6 +10,61 @@ import (
 
 // Token contains an end-user's tokens.
 // This is the data you must store to persist authentication.
+//
+// Example usage:
+//	// Configure a new Transport.
+//	t := oauth1.Transport{
+//		Key:                     os.Getenv("FITBIT_CLIENT_KEY"),
+//		Secret:                  os.Getenv("FITBIT_CLIENT_SECRET"),
+//		CallbackURI:             os.Getenv("FITBIT_CALLBACK_URI"),
+//		TemporaryCredentialsURI: "https://api.fitbit.com/oauth/request_token",
+//		AuthorizationURI:        "https://www.fitbit.com/oauth/authorize",
+//		TokenRequestURI:         "https://api.fitbit.com/oauth/access_token",
+//	}
+//
+//	// Request a set of temporary credentials.
+//	auth, err := t.RequestTemporaryCredentials()
+//	if err != nil {
+//		return
+//	}
+//
+//	// Most flows would redirect the user to the auth URI.
+//	fmt.Println("Enter the following URI in your browser.")
+//	fmt.Println(auth)
+//
+//	var verifier string
+//	fmt.Printf("Paste the verifier here: ")
+//	fmt.Scanf("%s", &verifier)
+//
+//	// Exchange temporary credentials for proper request token.
+//	form, err := t.RequestToken(verifier)
+//	if err != nil {
+//		return
+//	}
+//
+//	fmt.Println(t.Token.Key)
+//	fmt.Println(t.Token.Secret)
+//
+//	// Some providers return additional data with the token.
+//	fmt.Println(form.Get("encoded_user_id"))
+//
+//	// Perform authenticated requests.
+//	client := t.Client()
+//	response, err := client.Get("https://api.fitbit.com/1/user/-/profile.json")
+//	if err != nil {
+//		fmt.Println(err)
+//		return
+//	}
+//
+//	defer response.Body.Close()
+//
+//	activities, err := ioutil.ReadAll(response.Body)
+//	if err != nil {
+//		return
+//	}
+//
+//	fmt.Println(string(activities))
+//
 type Token struct {
 	Key    string
 	Secret string
